@@ -19,9 +19,9 @@ class CreateTableTbUsuario extends Migration
         }else{
             Schema::create('tb_usuario', function (Blueprint $table) {
                 $table->id();
-                $table->string('CPF');
+                $table->string('CPF')->unique();
                 $table->string('nome');
-                $table->string('email');
+                $table->string('email')->unique();
                 $table->string('senha');
                 $table->string('perfil');
                 $table->timestamps();

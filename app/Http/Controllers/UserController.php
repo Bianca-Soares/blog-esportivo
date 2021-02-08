@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\usuario;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Exception;
 
 class UserController extends Controller
 {
 
     public function login(Request $request){
         
+        $listaPerfil = array('admins', 'admin', 'arbitro', 'atleta', 'com_tec', 'coord_compet', 'coord_time');
+        $perfilOK = false;
         $CPF = $request->CPF;
         $senha = $request->senha;
 
@@ -22,27 +25,28 @@ class UserController extends Controller
             $_SESSION['nome_usuario'] = $usuarios->nome;
             $_SESSION['nivel_usuario'] = $usuarios->perfil;
             
-            $pagina = $_SESSION['nivel_usuario']."/painel.Index";
-            return view($pagina);
+            $pagina = "index";
 
-          
-            if($_SESSION['nivel_usuario'] == 'admin'){
-                return view('painel-ADM.Index');
+            foreach ($listaPerfil as &$perfil) {
+                if($perfil == $_SESSION['nivel_usuario']){
+                    $perfilOK = true;
+                    break;
+                }
+                               
             }
-            if($_SESSION['nivel_usuario'] == 'atleta'){
-                return view('painel-Atleta.Index');
-            }if($_SESSION['nivel_usuario'] == 'c.time'){
-                return view('painel-C-Time.Index');
-            }if($_SESSION['nivel_usuario'] == 'com.tecnica'){
-                return view('painel-Com.Tecnica.Index');
-            }if($_SESSION['nivel_usuario'] == 'c.competição'){
-                return view('painel-C.Competição.Index');
-            }if($_SESSION['nivel_usuario'] == 'Arbitro'){
-                return view('painel-Arbitros.Index');
+            
+            if($perfilOK){
+
+                $pagina = $_SESSION['nivel_usuario']."/painel.Index";
+                return view($pagina);
+            }else {
+                echo "Perfil de usuário não encontrado";
+                return view('Index');
             }
+                  
         } else {
             echo "CPF ou Senha incorreto";
-            return view ('Index');
+            return view('Index');
 
         }
     }
@@ -59,7 +63,7 @@ class UserController extends Controller
 
 //Inserir usuario no banco 
     public function inserir(Request $request){
-
+      
         $usuario = new usuario();
         $usuario = $usuario->create( $request->all() );
 

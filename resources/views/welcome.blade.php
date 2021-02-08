@@ -21,7 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
-            {{$nome}}
+            
     <p></p>
             <a href="/home">Link home</a>
 

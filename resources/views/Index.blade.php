@@ -1,4 +1,3 @@
-@extends('layouts.app')
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,6 +9,8 @@
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link href="{{URL::asset('css/login.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
   <main>
@@ -24,8 +25,10 @@
             <form method="post" action="{{route('usuario.login')}}">
               @csrf
               <div class="form-group">
+              
                 <label for="CPF">CPF</label>
-                <input type="text" name="CPF" id="CPF"  placeholder="000.000.000-00"  required="required">
+                <input type="number" name="CPF" id="CPF"  placeholder="000.000.000-00"  required="required">
+               
               </div>
               <div class="form-group mb-4">
                 <label for="password">Senha</label>

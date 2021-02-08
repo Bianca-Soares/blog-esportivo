@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\UserController;
 
@@ -16,11 +15,18 @@ use App\Http\Controllers\UserController;
 |
 */
 
-
 /*Rota inicial*/
 Route::get('/', function () {
-    return view('Index');
+    return view('index');
 });
+
+Auth::routes();
+
+/*Rota após o login*/
+Route::get('/home', function () {
+    return view('home');
+});
+
 
 Route::post('painel',[UserController::class, 'login'])-> name('usuario.login');
 
@@ -39,13 +45,6 @@ Route::get('atleta/lista', [AtletaController::class, 'lista']);
 
 
 /*EM REVISÃO*/
-Route::get('/login', function () {
-    return view('login');
-});
-Route::get('/home', function () {
-    return view('home');
-});
-
 
 Route::get('users', function (){
     return "usuario ";

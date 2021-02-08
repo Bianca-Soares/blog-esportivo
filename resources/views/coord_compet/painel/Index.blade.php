@@ -1,0 +1,1 @@
+Bem vindo coordenador de competição
