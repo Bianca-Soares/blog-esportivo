@@ -18,8 +18,7 @@ https://getcomposer.org/download/
 >_ composer global require "laravel/installer=~1.1"
 
 4- Download do projeto:
-O repositório é privado
-https://github.com/devspara/esportivo
+https://github.com/Bianca-Soares/blog-esportivo
 
 5- Configurar servidor
 
@@ -29,7 +28,6 @@ no terminal na pasta do projeto comando:
 
 Criar arquivo .env
 >_ copy .env.example .env
->_ php artisan key:generate
 
 Inicializar servidor
 >_ php artisan serve
